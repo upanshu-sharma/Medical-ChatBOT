@@ -2,8 +2,8 @@ from langchain_core.prompts import PromptTemplate
 from langchain_community.llms import CTransformers
 from langchain.chains import RetrievalQA
 from pinecone import Pinecone
-from langchain_pinecone import PineconeVectorStore as PC
-from flask import Flask, render_template, jsonify, request
+from langchain_pinecone import PineconeVectorStore as PC #type: ignore
+from flask import Flask, render_template, jsonify, request #type: ignore
 from dotenv import load_dotenv
 from src.helper import download_hugging_face_embeddings
 from src.prompt import *

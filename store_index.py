@@ -1,7 +1,6 @@
 from src.helper import load_pdf, text_split, download_hugging_face_embeddings
-from langchain_pinecone import PineconeVectorStore as PC
-from pinecone import Pinecone, ServerlessSpec
-import pinecone
+from langchain_pinecone import PineconeVectorStore as PC #type: ignore
+from pinecone import Pinecone
 import os
 from dotenv import load_dotenv
 
