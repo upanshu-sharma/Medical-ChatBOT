@@ -15,16 +15,7 @@ embeddings=download_hugging_face_embeddings()
 
 pc = Pinecone(api_key=PINECONE_API_KEY)
 
-index_name = "medical-chatbot" 
-pc.create_index(
-    name=index_name,
-    dimension=384,
-    metric="cosine",
-    spec=ServerlessSpec(
-        cloud='aws', 
-        region='us-east-1'
-    ) 
-) 
+index_name = "medical-chatbot"  
 index = pc.Index(index_name)
 docsearch=PC.from_texts([t.page_content for t in text_chunks], embeddings, index_name=index_name)
 

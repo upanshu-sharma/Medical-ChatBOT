@@ -1,9 +1,7 @@
-from langchain.prompts import PromptTemplate
-from langchain import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_community.llms import CTransformers
 from langchain.chains import RetrievalQA
-import pinecone
-from pinecone import Pinecone, ServerlessSpec
+from pinecone import Pinecone
 from langchain_pinecone import PineconeVectorStore as PC
 from flask import Flask, render_template, jsonify, request
 from dotenv import load_dotenv
@@ -44,6 +42,15 @@ qa=RetrievalQA.from_chain_type(
 @app.route("/")
 def index():
     return render_template('chat.html')
+
+@app.route("/get", methods=["GET", "POST"])
+def chat():
+    msg = request.form["msg"]
+    input = msg
+    print(input)
+    result=qa({"query": input})
+    print("Response : ", result["result"])
+    return str(result["result"])
 
 if __name__=='__main__':
     app.run(debug= True)
